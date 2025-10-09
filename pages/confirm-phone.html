@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>DOLOTA | Підтвердження номера</title>
+  <meta name="description" content="Підтвердження номера телефону для відкриття каталогів та матеріалів DOLOTA." />
+  <link rel="stylesheet" href="../styles/confirm-phone.css" />
+</head>
+<body>
+  <div class="container confirm-container">
+    <header>
+      <div class="brand">
+        <a href="https://dolota.ua/" target="_blank" rel="noopener">
+          <img src="../images/logo.png" alt="DOLOTA" />
+        </a>
+        <h1>DOLOTA · Підтвердження номера</h1>
+      </div>
+      <div class="sub">Міжнародна виставка · <span class="ua-flag" title="Ukraine"></span> UA</div>
+    </header>
+    <section class="card confirm-card">
+      <h2>Підтвердження номера телефону</h2>
+      <p class="sub">
+        Щоб відкрити вибраний каталог, підтвердьте номер телефону, який ви залишили у формі.
+      </p>
+      <div class="phone-display">
+        <label for="phoneDisplay">Ваш номер</label>
+        <input id="phoneDisplay" type="text" readonly />
+      </div>
+      <div class="actions">
+        <button id="sendCodeBtn" type="button" class="hidden" aria-hidden="true">Надіслати код підтвердження</button>
+        <div id="verificationLoader" class="loader" role="status" aria-live="polite">
+          <span class="visually-hidden">Перевіряємо статус підтвердження…</span>
+        </div>
+      </div>
+      <div id="codeSection" class="code-section hidden" aria-hidden="true">
+        <label for="codeInput">Введіть код із SMS</label>
+        <input id="codeInput" type="text" inputmode="numeric" maxlength="4" autocomplete="one-time-code" pattern="[0-9]{4}" placeholder="XXXX" aria-label="4-значний код підтвердження" />
+        <div class="actions">
+          <button id="verifyCodeBtn" type="button">Підтвердити</button>
+        </div>
+
+        <div id="resendCodeWrapper" class="resend-wrapper hidden" aria-hidden="true">
+          <button id="resendCodeLink" type="button" class="resend-link">Надіслати код повторно</button>
+          <span id="resendCountdown" class="resend-countdown" aria-live="polite"></span>
+        </div>
+      </div>
+      <p id="confirmStatus" class="status-message" role="status" aria-live="polite"></p>
+      <div class="back-link">
+        <a href="../index.html">Повернутися до списку каталогів</a>
+      </div>
+    </section>
+  </div>
+  <script src="../scripts/confirm-phone.js" defer></script>
+</body>
+</html>

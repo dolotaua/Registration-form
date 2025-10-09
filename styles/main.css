@@ -1,0 +1,442 @@
+:root {
+  --brand-primary: #8a5a2c;
+  --brand-blue: #3a7bd5;
+  --brand-yellow: #ffd200;
+  --bg: #111;
+  --card: #1a120b;
+  --card-2: #24170e;
+  --text: #f7f3ef;
+  --muted: #cfc8c2;
+  --input: #2b1d13;
+  --input-border: #5a3a21;
+  --ok: #2fbf71;
+  --warn: #f1b84b;
+  --err: #e76f51;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Helvetica Neue', Arial;
+  background: radial-gradient(1200px 800px at 10% -20%, var(--brand-yellow) 0%, transparent 30%),
+    radial-gradient(1200px 800px at 110% 120%, var(--brand-blue) 0%, transparent 30%),
+    linear-gradient(180deg, #0f0a05 0%, #120c07 100%);
+  background-repeat: no-repeat;
+  color: var(--text);
+  line-height: 1.45;
+  min-height: 100vh;
+  height: auto; /* критично */
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden; /* захист від горизонтального скролу */
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(1200px 800px at 10% -20%, var(--brand-yellow) 0%, transparent 30%),
+    radial-gradient(1200px 800px at 110% 120%, var(--brand-blue) 0%, transparent 30%),
+    linear-gradient(180deg, #0f0a05 0%, #120c07 100%);
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+html,
+body {
+  min-height: 100%;
+  height: auto;
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.brand img {
+  height: 52px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.card {
+  background: linear-gradient(180deg, var(--card) 0%, var(--card-2) 100%);
+  border: 1px solid var(--input-border);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(2px);
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 720px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  color: var(--muted);
+  margin: 6px 0;
+}
+
+input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--input-border);
+  background: var(--input);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.4;
+  outline: none;
+}
+
+.phone-field {
+  display: flex;
+  align-items: center;
+  background: var(--input);
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.phone-field input {
+  border: 0;
+  border-radius: 0;
+  flex: 1;
+  padding-left: 12px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.phone-prefix {
+  padding: 0 12px;
+  font-weight: 600;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--input-border);
+  background: rgba(0, 0, 0, 0.12);
+  min-width: 54px;
+}
+
+.phone-field input:focus {
+  box-shadow: inset 0 0 0 1px var(--brand-yellow);
+}
+
+.contact-phone {
+  margin: 12px 0 0;
+  color: var(--brand-yellow);
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.12s ease, opacity 0.12s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  line-height: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.contact-phone:hover,
+.contact-phone:focus-visible {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.contact-phone:focus-visible {
+  outline: 2px solid var(--brand-yellow);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.contact-phone.copied::after {
+  content: ' — Скопійовано!';
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+input::placeholder {
+  color: #a9988b;
+}
+
+.req::after {
+  content: " *";
+  color: var(--warn);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+button {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--brand-primary) 0%, #8a5a2c 100%);
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.06s ease, filter 0.2s ease;
+}
+
+button:hover {
+  filter: brightness(1.08);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.status {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.status.ok {
+  color: var(--ok);
+}
+
+.status.err {
+  color: var(--err);
+}
+
+.catalogs {
+  display: none;
+  margin-top: 24px;
+}
+
+.catalogs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.catalogs a {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #1e140c;
+  border: 1px solid var(--input-border);
+  text-decoration: none;
+  color: var(--text);
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--brand-blue);
+  color: #002;
+  font-weight: 700;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.ua-flag {
+  width: 18px;
+  height: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  vertical-align: -2px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(#62a8ff 0 50%, #ffd24a 50% 100%);
+  display: inline-block;
+}
+
+footer {
+  margin-top: 36px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.hl {
+  color: var(--brand-yellow);
+  font-weight: 700;
+}
+
+.cta {
+  margin-top: 18px;
+}
+
+.cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--brand-blue) 0%, #2759a7 100%);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.06s ease, filter 0.2s ease;
+}
+
+.cta a:hover {
+  filter: brightness(1.08);
+}
+
+.cta a:active {
+  transform: translateY(1px);
+}
+
+.cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 26px;
+}
+
+.contact-alt .contact-box {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #1e140c;
+  border: 1px solid var(--input-border);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.contact-alt a {
+  color: var(--brand-yellow);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.contact-alt a:hover {
+  text-decoration: underline;
+}
+
+.after-submit button {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--brand-primary) 0%, #8a5a2c 100%);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.06s ease, filter 0.2s ease;
+}
+
+.after-submit button:hover {
+  filter: brightness(1.08);
+}
+
+.after-submit button:active {
+  transform: translateY(1px);
+}
+
+.call-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--brand-primary) 0%, #8a5a2c 100%);
+  color: #fff !important;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.06s ease, filter 0.2s ease;
+  border: 0;
+}
+
+.call-btn:hover {
+  filter: brightness(1.08);
+}
+
+.call-btn:active {
+  transform: translateY(1px);
+}
+
+.contact-alt .contact-box {
+  background: transparent;
+  border: 0;
+}
